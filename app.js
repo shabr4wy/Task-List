@@ -13,3 +13,14 @@ function addToList() {
         alert ('Field is empty, You must add task first!')
     }
 }
+
+// biuld clear all btn
+function clearALL() {
+    const list = document.querySelector('.List');
+    // check if there is any list item to delete
+    if (list.innerHTML.length >= 1){
+        list.innerHTML = '';
+    }else {
+        alert ('You have no tasks yet to delete')
+    }
+}
