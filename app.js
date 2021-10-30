@@ -1,37 +1,39 @@
 // converting input content into list item
 function addToList() {
-    const list = document.querySelector('.List');
-    const inputContent = document.querySelector('#textfeild__input');
+    const list = document.querySelector('.list');
+    const input = document.querySelector('#textfeild__input');
     // validate input
-    if (inputContent.value.length >= 1) {
+    if (input.value.length >= 1) {
 
-        // crreate paragraph element as list item
-        const listParagrapgh = document.createElement('p');
-        listParagrapgh.className = 'list__paragrapgh';
-        listParagrapgh.innerHTML  = inputContent.value;
+        // create paragraph element as list item
+        const listItem = document.createElement('p');
+        listItem.className = 'list__item';
+        listItem.innerHTML  = input.value;
 
-        // biuld delete btn nested in the list item
-        const btn = document.createElement('button');
-        btn.innerHTML = "x";
-        btn.className = "list__paragrapgh__btn"
-        btn.addEventListener('click', () => {
-            btn.parentElement.remove();
+        // biuld 'delete list Btn' nested in the list item
+        // listBtn means the button that is inside each list item, not inside the entire list
+        // FOR MORE SUSTINABILITY https://scalablecss.com/bem-nesting-grandchild-elements/
+        const listBtn = document.createElement('button');
+        listBtn.innerHTML = "x";
+        listBtn.className = "btn list__btn"
+        listBtn.addEventListener('click', () => {
+            listBtn.parentElement.remove();
         });
-        listParagrapgh.appendChild(btn);
+        listItem.appendChild(listBtn);
         
         // add the list item to the list container
-        list.appendChild(listParagrapgh);
-        inputContent.value = '';
+        list.appendChild(listItem);
+        input.value = '';
     } else {
         alert ('Field is empty, You must add task first!')
     }
 }
 
 
-// biuld clear all btn
+// biuld clear all listBtn
 function clearALL() {
-    const list = document.querySelector('.List');
-    // check if there is any list item to delete
+    const list = document.querySelector('.list');
+    // check if there is any list item todelete
     if (list.innerHTML.length >= 1){
         list.innerHTML = '';
     }else {
