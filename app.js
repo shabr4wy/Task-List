@@ -16,7 +16,7 @@ function addToList() {
     if (input.value.length >= 1) {
 
         // create paragraph element as list item
-        const listItem = document.createElement('p');
+        const listItem = document.createElement('li');
         listItem.className = 'list__item';
         listItem.innerHTML  = input.value;
 
