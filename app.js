@@ -1,7 +1,17 @@
+// global scopes
+const list = document.querySelector('.list');
+const input = document.querySelector('#textfeild__input');
+
+// biuld input functionality to add items as "Add to List btn"
+input.addEventListener ('keydown', (e) => {
+    if (e.key === 'Enter'){
+        addToList();
+    }
+});
+
 // converting input content into list item
+const addBtn = document.querySelector('.textfield__button');
 function addToList() {
-    const list = document.querySelector('.list');
-    const input = document.querySelector('#textfeild__input');
     // validate input
     if (input.value.length >= 1) {
 
@@ -29,10 +39,8 @@ function addToList() {
     }
 }
 
-
 // biuld clear all listBtn
 function clearALL() {
-    const list = document.querySelector('.list');
     // check if there is any list item todelete
     if (list.innerHTML.length >= 1){
         list.innerHTML = '';
