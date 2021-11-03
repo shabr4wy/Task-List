@@ -1,1 +1,7 @@
-/* No CSS *//*# sourceMappingURL=app.css.map */
+/* fonts */
+input,
+button:not(.list__btn),
+li {
+  font-size: 20px;
+}
+/*# sourceMappingURL=app.css.map */
