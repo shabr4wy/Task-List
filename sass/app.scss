@@ -6,3 +6,29 @@ button:not(.list__btn),
 li{
     font-size: 20px;
 }
+
+/* style */
+
+/* Button */
+.btn {
+    background-color: $btnBgColor;
+    border: solid darken($btnBgColor, 5%);
+    border-radius: 15px;
+    padding: 5px;
+    &:hover {
+        box-shadow:3px 3px 3px grey;
+    }
+
+    &.list__btn {
+        border: none;
+        padding: 0px;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;  
+    }
+
+    &.textfield__button {
+        background-color: #34BE82;
+        border: solid darken(#34BE82, 5%);
+    }
+}
