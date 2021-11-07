@@ -2,7 +2,7 @@
 const list = document.querySelector('.list');
 const input = document.querySelector('#textfeild__input');
 
-// biuld input functionality to add items as "Add to List btn"
+// biuld input functionality to add items as "Add btn"
 input.addEventListener ('keydown', (e) => {
     if (e.key === 'Enter'){
         addToList();
