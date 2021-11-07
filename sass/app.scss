@@ -32,3 +32,20 @@ li{
         border: solid darken(#34BE82, 5%);
     }
 }
+
+/* input */
+input {
+    border: 0px;
+    background-color: lightgrey;
+    border-radius: 15px;
+    /* the comming 8px to add consistency with buttons => btn padding(5px) + btn border(3px) = 8px*/
+    padding: 8px 0 8px 10px;
+    width: 78%;
+    transition: background-color .3s ;
+
+    &:focus {
+        outline: none;
+        box-shadow:0px 0px 5px grey;
+        background-color: white;
+    }
+}
