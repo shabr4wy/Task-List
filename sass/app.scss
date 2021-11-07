@@ -18,6 +18,10 @@ li{
     &:hover {
         box-shadow:3px 3px 3px grey;
     }
+    /* add same effect to touch device */
+    &:active {
+        box-shadow:3px 3px 3px grey;
+    }
 
     &.list__btn {
         border: none;

@@ -12,9 +12,15 @@ li {
   border: solid #e23100;
   border-radius: 15px;
   padding: 5px;
+  /* add same effect to touch device */
 }
 
 .btn:hover {
+  -webkit-box-shadow: 3px 3px 3px grey;
+          box-shadow: 3px 3px 3px grey;
+}
+
+.btn:active {
   -webkit-box-shadow: 3px 3px 3px grey;
           box-shadow: 3px 3px 3px grey;
 }
