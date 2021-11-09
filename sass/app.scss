@@ -16,12 +16,12 @@
     padding: 5px;
     @media (hover:hover){
         &:hover {
-            box-shadow:3px 3px 3px grey;
+            box-shadow:0px 0px 5px grey;
         }
     }
     /* add same effect to touch device */
     &:active {
-        box-shadow:3px 3px 3px grey;
+        box-shadow:0px 0px 5px grey;
     }
 
     &.list__btn {
@@ -33,6 +33,7 @@
     }
 
     &.textfield__button {
+        margin-left: 5px;
         background-color: $green;
         border: solid darken($green, 5%);
     }
