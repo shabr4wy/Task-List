@@ -14,9 +14,11 @@
   /* add same effect to touch device */
 }
 
-.btn:hover {
-  -webkit-box-shadow: 3px 3px 3px grey;
-          box-shadow: 3px 3px 3px grey;
+@media (hover: hover) {
+  .btn:hover {
+    -webkit-box-shadow: 3px 3px 3px grey;
+            box-shadow: 3px 3px 3px grey;
+  }
 }
 
 .btn:active {
