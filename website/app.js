@@ -26,9 +26,6 @@ function addToList() {
         const listBtn = document.createElement('button');
         listBtn.innerHTML = "x";
         listBtn.className = "btn list__btn"
-        listBtn.addEventListener('click', () => {
-            listBtn.parentElement.remove();
-        });
         listItem.appendChild(listBtn);
         
         // add the list item to the list container
@@ -38,6 +35,13 @@ function addToList() {
         alert ('Field is empty, You must add task first!')
     }
 }
+
+// add listBtn functoionality
+list.addEventListener('click', (e) => {
+    if (e.target.parentElement.className === 'list__item'){
+        e.target.parentElement.remove();
+    }
+});
 
 // biuld clear all listBtn
 function clearALL() {
