@@ -80,3 +80,7 @@ input {
     margin-top: 5px;
     padding: 8px 0 8px 10px;
 }
+
+.list__item--done {
+    text-decoration: line-through;
+}

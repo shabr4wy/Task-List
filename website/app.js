@@ -43,6 +43,13 @@ list.addEventListener('click', (e) => {
     }
 });
 
+// add line through decoration on finished tasks
+list.addEventListener('click', (e) => {
+    if (e.target.classList.contains ('list__item')){
+        e.target.classList.toggle('list__item--done');
+    } 
+});
+
 // biuld clear all listBtn
 function clearALL() {
     // check if there is any list item todelete

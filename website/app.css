@@ -17,6 +17,11 @@
   border-radius: 15px;
   padding: 5px;
   /* add same effect to touch device */
+  /* this style can't be compiled from nesting so it's written in "line 76"
+    .list__item {
+        position: relative;
+    }
+    */
 }
 
 @media (hover: hover) {
@@ -79,5 +84,9 @@ input:focus {
   border-radius: 15px;
   margin-top: 5px;
   padding: 8px 0 8px 10px;
+}
+
+.list__item--done {
+  text-decoration: line-through;
 }
 /*# sourceMappingURL=app.css.map */
