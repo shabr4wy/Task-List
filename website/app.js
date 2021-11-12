@@ -2,7 +2,7 @@
 const list = document.querySelector('.list');
 const input = document.querySelector('#textfeild__input');
 
-// biuld input functionality to add items as "Add btn"
+// biuld input functionality to add items
 input.addEventListener ('keydown', (e) => {
     if (e.key === 'Enter'){
         addToList();
@@ -15,14 +15,12 @@ function addToList() {
     // validate input
     if (input.value.length >= 1) {
 
-        // create paragraph element as list item
+        // create list item
         const listItem = document.createElement('li');
         listItem.className = 'list__item';
         listItem.innerHTML  = input.value;
 
-        // biuld 'delete list Btn' nested in the list item
-        // listBtn means the button that is inside each list item, not inside the entire list
-        // FOR MORE SUSTINABILITY https://scalablecss.com/bem-nesting-grandchild-elements/
+        // biuld 'list Btn' to delete list item ... functionality added in lines 37-42 
         const listBtn = document.createElement('button');
         listBtn.innerHTML = "x";
         listBtn.className = "btn list__btn"
@@ -50,7 +48,7 @@ list.addEventListener('click', (e) => {
     } 
 });
 
-// biuld clear all listBtn
+// biuld clear all listBtn functionality
 function clearALL() {
     // check if there is any list item todelete
     if (list.innerHTML.length >= 1){
