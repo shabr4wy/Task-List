@@ -38,7 +38,7 @@ function addToList() {
 
 // add listBtn functoionality
 list.addEventListener('click', (e) => {
-    if (e.target.parentElement.className === 'list__item'){
+    if (e.target.parentElement.classList.contains('list__item')){
         e.target.parentElement.remove();
     }
 });
