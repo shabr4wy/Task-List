@@ -4,6 +4,7 @@
 *:not(.list__btn, h1) {
     font-family:Arial, Helvetica, sans-serif;
     font-size: 20px;
+    user-select: none;
 }
 
 /* style */
@@ -18,7 +19,6 @@ h1 {
 
 /* Button */
 .btn {
-    user-select: none;
     cursor: pointer;
     background-color: #E18237;
     border: solid darken(#E18237, 5%);
@@ -92,7 +92,6 @@ input {
 
 .list__item {
     position: relative;
-    user-select: none;
     cursor: pointer;
     list-style-position: inside;
     background-color: #EED6C4;

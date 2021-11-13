@@ -2,6 +2,10 @@
 *:not(.list__btn, h1) {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 /* style */
@@ -15,10 +19,6 @@ h1 {
 
 /* Button */
 .btn {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
   cursor: pointer;
   background-color: #E18237;
   border: solid #dd7421;
@@ -99,10 +99,6 @@ input:focus {
 
 .list__item {
   position: relative;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
   cursor: pointer;
   list-style-position: inside;
   background-color: #EED6C4;
