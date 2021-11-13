@@ -8,22 +8,30 @@
 
 /* style */
 
+html {
+    background-color: #283148;
+}
+
+h1 {
+    color: #F9F5F0;
+}
+
 /* Button */
 .btn {
     user-select: none;
     cursor: pointer;
-    background-color: #FB3600;
-    border: solid darken(#FB3600, 5%);
+    background-color: #E18237;
+    border: solid darken(#E18237, 5%);
     border-radius: $radius;
     padding: 5px;
     @media (hover:hover){
         &:hover {
-            box-shadow:0px 0px 5px grey;
+            box-shadow:0px 0px 5px white;
         }
     }
     /* add same effect to touch device */
         &:active {
-        box-shadow:0px 0px 5px grey;
+        box-shadow:0px 0px 5px white;
     }
 
     /* this style can't be compiled from nesting so it's written in "line 76"
@@ -41,19 +49,27 @@
         position: absolute;
         right: 10px;
         bottom: 8px;
+
+        &:hover {
+            box-shadow:0px 0px 5px black;
+        }
+
+        &:hover {
+            box-shadow:0px 0px 5px black;
+        }
     }
 
     &.textfield__button {
         margin-left: 5px;
-        background-color: #34BE82;
-        border: solid darken(#34BE82, 5%);
+        background-color: #BECA5C;
+        border: solid darken(#BECA5C, 5%);
     }
 }
 
 /* input */
 input {
     border: 0px;
-    background-color: lightgrey;
+    background-color: #C5C5C5;
     border-radius: $radius;
     /* the comming 8px to add consistency with buttons => btn padding(5px) + btn border(3px) = 8px*/
     padding: 8px 0 8px 10px;
@@ -62,7 +78,7 @@ input {
 
     &:focus {
         outline: none;
-        box-shadow:0px 0px 5px grey;
+        box-shadow:0px 0px 5px white;
         background-color: white;
     }
 }
@@ -79,7 +95,7 @@ input {
     user-select: none;
     cursor: pointer;
     list-style-position: inside;
-    background-color: #34BE82;
+    background-color: #EED6C4;
     border-radius: $radius;
     margin-top: 5px;
     padding: 8px 0 8px 10px;

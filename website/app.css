@@ -5,6 +5,14 @@
 }
 
 /* style */
+html {
+  background-color: #283148;
+}
+
+h1 {
+  color: #F9F5F0;
+}
+
 /* Button */
 .btn {
   -webkit-user-select: none;
@@ -12,8 +20,8 @@
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
-  background-color: #FB3600;
-  border: solid #e23100;
+  background-color: #E18237;
+  border: solid #dd7421;
   border-radius: 15px;
   padding: 5px;
   /* add same effect to touch device */
@@ -26,14 +34,14 @@
 
 @media (hover: hover) {
   .btn:hover {
-    -webkit-box-shadow: 0px 0px 5px grey;
-            box-shadow: 0px 0px 5px grey;
+    -webkit-box-shadow: 0px 0px 5px white;
+            box-shadow: 0px 0px 5px white;
   }
 }
 
 .btn:active {
-  -webkit-box-shadow: 0px 0px 5px grey;
-          box-shadow: 0px 0px 5px grey;
+  -webkit-box-shadow: 0px 0px 5px white;
+          box-shadow: 0px 0px 5px white;
 }
 
 .btn.list__btn {
@@ -47,16 +55,26 @@
   bottom: 8px;
 }
 
+.btn.list__btn:hover {
+  -webkit-box-shadow: 0px 0px 5px black;
+          box-shadow: 0px 0px 5px black;
+}
+
+.btn.list__btn:hover {
+  -webkit-box-shadow: 0px 0px 5px black;
+          box-shadow: 0px 0px 5px black;
+}
+
 .btn.textfield__button {
   margin-left: 5px;
-  background-color: #34BE82;
-  border: solid #2faa74;
+  background-color: #BECA5C;
+  border: solid #b6c449;
 }
 
 /* input */
 input {
   border: 0px;
-  background-color: lightgrey;
+  background-color: #C5C5C5;
   border-radius: 15px;
   /* the comming 8px to add consistency with buttons => btn padding(5px) + btn border(3px) = 8px*/
   padding: 8px 0 8px 10px;
@@ -67,8 +85,8 @@ input {
 
 input:focus {
   outline: none;
-  -webkit-box-shadow: 0px 0px 5px grey;
-          box-shadow: 0px 0px 5px grey;
+  -webkit-box-shadow: 0px 0px 5px white;
+          box-shadow: 0px 0px 5px white;
   background-color: white;
 }
 
@@ -87,7 +105,7 @@ input:focus {
           user-select: none;
   cursor: pointer;
   list-style-position: inside;
-  background-color: #34BE82;
+  background-color: #EED6C4;
   border-radius: 15px;
   margin-top: 5px;
   padding: 8px 0 8px 10px;
