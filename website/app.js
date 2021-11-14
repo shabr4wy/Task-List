@@ -17,8 +17,12 @@ function addToList() {
 
         // create list item
         const listItem = document.createElement('li');
-        listItem.className = 'list__item';
+        listItem.className = 'list__item list__item--animation';
         listItem.innerHTML  = input.value;
+
+        requestAnimationFrame (() => {
+            listItem.classList.remove("list__item--animation")
+        })
 
         // biuld 'list Btn' to delete list item ... functionality added in lines 37-42 
         const listBtn = document.createElement('button');
@@ -37,7 +41,13 @@ function addToList() {
 // add listBtn functoionality
 list.addEventListener('click', (e) => {
     if (e.target.parentElement.classList.contains('list__item')){
-        e.target.parentElement.remove();
+        e.target.parentElement.classList.add('list__item--animation')
+
+        list.addEventListener('transitionend', (e) => {
+            if (e.target.classList.contains('list__item--animation')){
+                e.target.remove();
+            }
+        });
     }
 });
 

@@ -98,6 +98,12 @@ input {
     border-radius: $radius;
     margin-top: 5px;
     padding: 8px 0 8px 10px;
+    transform: scale(1);
+    transition: transform .3s;
+}
+
+.list__item--animation {
+    transform: scale(0);
 }
 
 .list__item--done {
