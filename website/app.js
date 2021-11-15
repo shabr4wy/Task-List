@@ -62,7 +62,28 @@ list.addEventListener('click', (e) => {
 function clearALL() {
     // check if there is any list item todelete
     if (list.innerHTML.length >= 1){
-        list.innerHTML = '';
+
+        // calculate list height relative to list items
+        const listHeight = document.querySelectorAll('.list__item').length * 45;
+
+        // style two classes to animate between
+        //first
+        const cssRulesNum = document.styleSheets[0].cssRules.length;
+        document.styleSheets[0].insertRule(`.list--animation1
+            { height: ${listHeight}px; transform: scale(1); transition: all .5s }`, cssRulesNum);
+        list.classList.add('list--animation1');
+        // second
+        document.styleSheets[0].insertRule( `.list--animation2
+            {height: 0px; transform: scale(0);}`,cssRulesNum +1);
+        requestAnimationFrame (() => {
+            list.classList.add('list--animation2');
+        })
+
+        // remove the 1- two added classes. 2- all list items. when animation done
+        setTimeout(() => {
+            list.classList.remove('list--animation2', 'list--animation1');
+            list.innerHTML = '';
+        }, 500);
     }else {
         alert ('You have no tasks yet to delete')
     }
