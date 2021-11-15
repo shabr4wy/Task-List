@@ -124,7 +124,8 @@ input:focus {
 }
 
 .list__item--done {
-  text-decoration: line-through;
+  -webkit-text-decoration: line-through 3px;
+          text-decoration: line-through 3px;
 }
 
 /* responsive design */
