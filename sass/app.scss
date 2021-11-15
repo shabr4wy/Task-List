@@ -88,6 +88,7 @@ input {
     padding: 0px;
     max-height: 60vh;
     overflow: scroll;
+    margin: 10px 0px;
 }   
 
 .list__item {
@@ -99,11 +100,17 @@ input {
     margin-top: 5px;
     padding: 8px 0 8px 10px;
     transform: scale(1);
-    transition: transform .3s;
+    box-sizing: border-box;
+    height: 40px;
+    width: 95vw;
+    transition: height .5s, width .5s, padding .5s, margin-top .5s;
 }
 
 .list__item--animation {
-    transform: scale(0);
+    height: 0px;
+    width: 0vw;
+    padding: 0px;
+    margin-top: 0px;
 }
 
 .list__item--done {
