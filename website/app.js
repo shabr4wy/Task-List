@@ -70,7 +70,7 @@ function clearALL() {
         //first
         const cssRulesNum = document.styleSheets[0].cssRules.length;
         document.styleSheets[0].insertRule(`.list--animation1
-            { height: ${listHeight}px; transform: scale(1); transition: all .5s }`, cssRulesNum);
+            { height: ${listHeight}px; transform: scale(1); transition: transform .5s, height 1s cubic-bezier(.49,.15,.34,.98) }`, cssRulesNum);
         list.classList.add('list--animation1');
         // second
         document.styleSheets[0].insertRule( `.list--animation2
@@ -83,7 +83,7 @@ function clearALL() {
         setTimeout(() => {
             list.classList.remove('list--animation2', 'list--animation1');
             list.innerHTML = '';
-        }, 500);
+        }, 1000);
     }else {
         alert ('You have no tasks yet to delete')
     }
