@@ -9,6 +9,10 @@
 }
 
 /* style */
+html {
+  background-color: #283148;
+}
+
 h1 {
   color: #F9F5F0;
 }
