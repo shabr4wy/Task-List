@@ -125,6 +125,7 @@ input:focus {
 .list__item--done {
   -webkit-text-decoration: line-through 3px;
           text-decoration: line-through 3px;
+  background-color: grey;
 }
 
 /* responsive design */
