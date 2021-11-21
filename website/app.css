@@ -113,6 +113,7 @@ input:focus {
 
 /* list items */
 .list__item {
+  will-change: auto;
   position: relative;
   cursor: pointer;
   list-style-position: inside;
@@ -126,15 +127,23 @@ input:focus {
           box-sizing: border-box;
   height: 40px;
   width: 78%;
-  -webkit-transition: height .5s, width .5s, padding .5s, margin-top .5s;
-  transition: height .5s, width .5s, padding .5s, margin-top .5s;
+  transform: scale(1);
+  -webkit-transition: height .3s, width .3s, padding .3s, margin-top .3s, -webkit-transform .5s ease-out;
+  transition: height .3s, width .3s, padding .3s, margin-top .3s, -webkit-transform .5s ease-out;
+  transition: height .3s, width .3s, padding .3s, margin-top .3s, transform .5s ease-out;
+  transition: height .3s, width .3s, padding .3s, margin-top .3s, transform .5s ease-out, -webkit-transform .5s ease-out;
 }
 
+/* box model is animated to apply transition to the list which animates the clear All btn in turn */
+/* added transition to mask any dropped frames */
+/* reduced transition time to mask any dropped frames */
 .list__item--animation {
   height: 0px;
   width: 0vw;
   padding: 0px;
   margin-top: 0px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
 }
 
 .list__item--done {
