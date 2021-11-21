@@ -59,32 +59,49 @@ list.addEventListener('click', (e) => {
 });
 
 // biuld clear all listBtn functionality
-function clearALL() {
+function clearALL () {
+    const clearAllBtn = document.querySelector('.clearAll');
     // check if there is any list item todelete
     if (list.innerHTML.length >= 1){
 
-        // calculate list height relative to list items
-        const listHeight = document.querySelectorAll('.list__item').length * 45;
+        // following code (line 70-96) is to create animation when removing all list items.
+        // for sake of it, animation added to both clear ALL btn and list.
 
-        // style two classes to animate between
-        //first
+        // calculate list height
+        const listHeight = document.querySelector('.list').offsetHeight;
+       
+        // create two classes to animate claerAll btn between
         const cssRulesNum = document.styleSheets[0].cssRules.length;
-        document.styleSheets[0].insertRule(`.list--animation1
-            { height: ${listHeight}px; transform: scale(1); transition: transform .5s, height 1s`, cssRulesNum);
-        list.classList.add('list--animation1');
+        //first
+        document.styleSheets[0].insertRule( `.clearAll--animation1 {
+            transform: translateY(0);
+            transition: transform .5s ease-in ;
+        }`,cssRulesNum);
+            // animate clear All btn - phase 1 
+            clearAllBtn.classList.add('clearAll--animation1');
+
         // second
-        document.styleSheets[0].insertRule( `.list--animation2
-            {height: 0px; transform: scale(0);}`,cssRulesNum +1);
+        document.styleSheets[0].insertRule(`.clearAll--animation2 {
+            transform: translateY(-${listHeight}px);
+        }`, cssRulesNum + 1);
+
+        // animate list - phase 1
+        list.classList.add('list--delete--animation1');
+            
         requestAnimationFrame (() => {
-            list.classList.add('list--animation2');
+            // animate list - phase 2
+            list.classList.add('list--delete--animation2');
+            // animate clear All btn - phase 2 
+            clearAllBtn.classList.add('clearAll--animation2');
         })
 
-        // remove the 1- two added classes. 2- all list items. when animation done
+        // remove all classes added to both list and clear All btn when animation is done
         setTimeout(() => {
-            list.classList.remove('list--animation2', 'list--animation1');
+            list.classList.remove('list--delete--animation2', 'list--delete--animation1');
+            clearAllBtn.classList.remove('clearAll--animation1','clearAll--animation2');
             list.innerHTML = '';
         }, 1000);
     }else {
-        alert ('You have no tasks yet to delete')
+        alert ('You have no tasks yet to delete');
     }
 }
