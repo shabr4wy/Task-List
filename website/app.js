@@ -75,7 +75,7 @@ function clearALL () {
         //first
         document.styleSheets[0].insertRule( `.clearAll--animation1 {
             transform: translateY(0);
-            transition: transform .5s ease-in ;
+            transition: transform .6s ease-in ;
         }`,cssRulesNum);
             // animate clear All btn - phase 1 
             clearAllBtn.classList.add('clearAll--animation1');
