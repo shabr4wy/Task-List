@@ -1,30 +1,76 @@
 // global scopes
 const list = document.querySelector('.list');
 const input = document.querySelector('#textfeild__input');
+const addBtn = document.querySelector('.textfield__button');
+let arrayOfItems = [];
+
+if (localStorage.getItem("items")) {
+    arrayOfItems = JSON.parse(localStorage.getItem("items"));
+  }  
+
+getitemsFromLocalStorage(); // line 168
 
 // biuld input functionality to add items
 input.addEventListener ('keydown', (e) => {
-    if (e.key === 'Enter'){
-        addToList();
+    if (e.key === 'Enter' && input.value !== ''){
+        addItemToArray();
+    } else if (e.key === 'Enter' && input.value === '') {
+        alert ('please, Type your task first');
     }
 });
 
-// converting input content into list item
-const addBtn = document.querySelector('.textfield__button');
-function addToList() {
-    // validate input
-    if (input.value.length >= 1) {
+// biuld add btn functionality to add items
+addBtn.addEventListener('click', () => {
+    if(input.value !== '') {
+        addItemToArray();
+    } else {
+        alert ('please, Type your task first')
+    }
+});
 
+// store items in the array 
+function addItemToArray() {
+    // item Data
+    const item = {
+      id: Date.now(),
+      text: input.value,
+      done: false,
+    };
+    // Push item To Array Of items
+    arrayOfItems.push(item);
+    // Add items To Page
+    addToList(arrayOfItems); // line 47
+    // Add items To Local Storage
+    addItemsToLocalStorageFrom(arrayOfItems); // line 163
+  }
+
+// converting input content into list item
+function addToList(arrayOfItems) {
+    // empty the items list to not repeating all items every time the function excutes
+    list.innerHTML = "";
+
+    arrayOfItems.forEach((elem,i)=> {
         // create list item
         const listItem = document.createElement('li');
-        listItem.className = 'list__item list__item--animation';
-        listItem.innerHTML  = input.value;
+        listItem.className = 'list__item';
+        // check done value (needed specifically on reload 'local storage')
+        if (elem.done) {
+            listItem.classList.add('list__item--done');
+        }
 
-        requestAnimationFrame (() => {
-            listItem.classList.remove("list__item--animation")
-        })
+        // to animate the one added item
+        if(arrayOfItems.indexOf(elem) === arrayOfItems.length-1) {
+            listItem.classList.add('list__item--animation');
+            requestAnimationFrame (() => {
+                listItem.classList.remove("list__item--animation");
+            });
+        }
 
-        // biuld 'list Btn' to delete list item ... functionality added in lines 37-42 
+        // token every item
+        listItem.setAttribute('data-id', elem.id);
+        listItem.innerHTML  = elem.text;
+
+        // biuld 'list Btn' to delete list item ... functionality added in lines 85-99 
         const listBtn = document.createElement('button');
         listBtn.innerHTML = "x";
         listBtn.className = "btn list__btn"
@@ -33,27 +79,31 @@ function addToList() {
         // add the list item to the list container
         list.appendChild(listItem);
         input.value = '';
-    } else {
-        alert ('Field is empty, You must add task first!')
-    }
+    });
 }
 
 // add listBtn functoionality
 list.addEventListener('click', (e) => {
     if (e.target.parentElement.classList.contains('list__item')){
+        // animate removed item
         e.target.parentElement.classList.add('list__item--animation')
 
         list.addEventListener('transitionend', (e) => {
             if (e.target.classList.contains('list__item--animation')){
                 e.target.remove();
+                // update local storage
+                deleteItemFromLocalStorage(e.target.getAttribute('data-id')) // line 188
             }
         });
     }
 });
 
-// add line through decoration on finished tasks
+// add done status on finished items
 list.addEventListener('click', (e) => {
     if (e.target.classList.contains ('list__item')){
+        // update local storage
+        toggleDoneStatus(e.target.getAttribute('data-id'));  // line 177
+        // add done status
         e.target.classList.toggle('list__item--done');
     } 
 });
@@ -64,7 +114,7 @@ function clearALL () {
     // check if there is any list item todelete
     if (list.innerHTML.length >= 1){
 
-        // following code (line 70-96) is to create animation when removing all list items.
+        // following code (line 117-150) is to create animation when removing all list items.
         // for sake of it, animation added to both clear ALL btn and list.
 
         // calculate list height
@@ -101,7 +151,76 @@ function clearALL () {
             clearAllBtn.classList.remove('clearAll--animation1','clearAll--animation2');
             list.innerHTML = '';
         }, 1000);
+
+        // remove all data from the array in both local storage and the app
+        window.localStorage.removeItem('items');
+        arrayOfItems = [];
     }else {
-        alert ('You have no tasks yet to delete');
+        alert ('You have no items yet to delete');
     }
+}
+
+// add arrayOfItems to local storage
+function addItemsToLocalStorageFrom(arrayOfItems) {
+    window.localStorage.setItem("items", JSON.stringify(arrayOfItems));
+}
+
+// get arrayOfItems from storage
+function getitemsFromLocalStorage () {
+    let data = window.localStorage.getItem("items");
+    if (data) {
+        let arrayOfItems = JSON.parse(data);
+        addToList2(arrayOfItems); // line 196
+    }
+}
+
+// sync done value
+function toggleDoneStatus(itemId) {
+    arrayOfItems.forEach((elem) => {
+        if (elem.id == itemId) {
+            elem.done == false ? (elem.done = true) : (elem.done = false);
+        }
+    })
+    // update local storage
+    addItemsToLocalStorageFrom(arrayOfItems); // line 163
+}
+
+// sync all items if any deleted
+function deleteItemFromLocalStorage (itemId) {
+    // excluding the deleted item from the array
+    arrayOfItems = arrayOfItems.filter((item) => item.id != itemId);
+    // update local storage
+    addItemsToLocalStorageFrom(arrayOfItems); // line 163 
+}
+
+// this function is added/copied without the animation functionality (141 - 146) only to be excuted on reload
+// to prevent the last added item to animate
+// copied from the addToList() line 47
+function addToList2(arrayOfItems) {
+    // empty the items list to not repeating all items every time the function excutes
+    list.innerHTML = "";
+
+    arrayOfItems.forEach((elem,i)=> {
+        // create list item
+        const listItem = document.createElement('li');
+        listItem.className = 'list__item';
+        // check done value (needed specifically on reload 'local storage')
+        if (elem.done) {
+            listItem.classList.add('list__item--done');
+        }
+
+        // token every item
+        listItem.setAttribute('data-id', elem.id);
+        listItem.innerHTML  = elem.text;
+
+        // biuld 'list Btn' to delete list item ... functionality added in lines 82-96 
+        const listBtn = document.createElement('button');
+        listBtn.innerHTML = "x";
+        listBtn.className = "btn list__btn"
+        listItem.appendChild(listBtn);
+        
+        // add the list item to the list container
+        list.appendChild(listItem);
+        input.value = '';
+    });
 }
