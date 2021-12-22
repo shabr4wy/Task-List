@@ -4,11 +4,14 @@ const input = document.querySelector('#textfeild__input');
 const addBtn = document.querySelector('.textfield__button');
 let arrayOfItems = [];
 
+// check if local storage data exists
 if (localStorage.getItem("items")) {
     arrayOfItems = JSON.parse(localStorage.getItem("items"));
-  }  
 
-getitemsFromLocalStorage(); // line 168
+    // get data
+    getitemsFromLocalStorage();
+}
+
 
 // biuld input functionality to add items
 input.addEventListener ('keydown', (e) => {
@@ -39,13 +42,16 @@ function addItemToArray() {
     // Push item To Array Of items
     arrayOfItems.push(item);
     // Add items To Page
-    addToList(arrayOfItems); // line 47
+    addToList(arrayOfItems, true);
     // Add items To Local Storage
-    addItemsToLocalStorageFrom(arrayOfItems); // line 163
+    addItemsToLocalStorageFrom(arrayOfItems);
   }
 
-// converting input content into list item
-function addToList(arrayOfItems) {
+// view and add items to the list
+// secend parameter is used in line 68: 
+// if the item added: 1- from the user then animate last item => true line 45
+//                    2- from local storage don't animate last item => false line 179
+function addToList(arrayOfItems, animateLastItem) {
     // empty the items list to not repeating all items every time the function excutes
     list.innerHTML = "";
 
@@ -59,7 +65,7 @@ function addToList(arrayOfItems) {
         }
 
         // to animate the one added item
-        if(arrayOfItems.indexOf(elem) === arrayOfItems.length-1) {
+        if(arrayOfItems.indexOf(elem) === arrayOfItems.length-1 && animateLastItem === true) {
             listItem.classList.add('list__item--animation');
             requestAnimationFrame (() => {
                 listItem.classList.remove("list__item--animation");
@@ -70,7 +76,7 @@ function addToList(arrayOfItems) {
         listItem.setAttribute('data-id', elem.id);
         listItem.innerHTML  = elem.text;
 
-        // biuld 'list Btn' to delete list item ... functionality added in lines 85-99 
+        // biuld 'list Btn' to delete list item
         const listBtn = document.createElement('button');
         listBtn.innerHTML = "x";
         listBtn.className = "btn list__btn"
@@ -92,7 +98,7 @@ list.addEventListener('click', (e) => {
             if (e.target.classList.contains('list__item--animation')){
                 e.target.remove();
                 // update local storage
-                deleteItemFromLocalStorage(e.target.getAttribute('data-id')) // line 188
+                deleteItemFromLocalStorage(e.target.getAttribute('data-id'));
             }
         });
     }
@@ -102,7 +108,7 @@ list.addEventListener('click', (e) => {
 list.addEventListener('click', (e) => {
     if (e.target.classList.contains ('list__item')){
         // update local storage
-        toggleDoneStatus(e.target.getAttribute('data-id'));  // line 177
+        toggleDoneStatus(e.target.getAttribute('data-id'));
         // add done status
         e.target.classList.toggle('list__item--done');
     } 
@@ -114,7 +120,7 @@ function clearALL () {
     // check if there is any list item todelete
     if (list.innerHTML.length >= 1){
 
-        // following code (line 117-150) is to create animation when removing all list items.
+        // the code (lines 126-152) is to create animation when removing all list items.
         // for sake of it, animation added to both clear ALL btn and list.
 
         // calculate list height
@@ -170,7 +176,7 @@ function getitemsFromLocalStorage () {
     let data = window.localStorage.getItem("items");
     if (data) {
         let arrayOfItems = JSON.parse(data);
-        addToList2(arrayOfItems); // line 196
+        addToList(arrayOfItems, false);
     }
 }
 
@@ -182,7 +188,7 @@ function toggleDoneStatus(itemId) {
         }
     })
     // update local storage
-    addItemsToLocalStorageFrom(arrayOfItems); // line 163
+    addItemsToLocalStorageFrom(arrayOfItems);
 }
 
 // sync all items if any deleted
@@ -190,37 +196,5 @@ function deleteItemFromLocalStorage (itemId) {
     // excluding the deleted item from the array
     arrayOfItems = arrayOfItems.filter((item) => item.id != itemId);
     // update local storage
-    addItemsToLocalStorageFrom(arrayOfItems); // line 163 
-}
-
-// this function is added/copied without the animation functionality (141 - 146) only to be excuted on reload
-// to prevent the last added item to animate
-// copied from the addToList() line 47
-function addToList2(arrayOfItems) {
-    // empty the items list to not repeating all items every time the function excutes
-    list.innerHTML = "";
-
-    arrayOfItems.forEach((elem,i)=> {
-        // create list item
-        const listItem = document.createElement('li');
-        listItem.className = 'list__item';
-        // check done value (needed specifically on reload 'local storage')
-        if (elem.done) {
-            listItem.classList.add('list__item--done');
-        }
-
-        // token every item
-        listItem.setAttribute('data-id', elem.id);
-        listItem.innerHTML  = elem.text;
-
-        // biuld 'list Btn' to delete list item ... functionality added in lines 82-96 
-        const listBtn = document.createElement('button');
-        listBtn.innerHTML = "x";
-        listBtn.className = "btn list__btn"
-        listItem.appendChild(listBtn);
-        
-        // add the list item to the list container
-        list.appendChild(listItem);
-        input.value = '';
-    });
+    addItemsToLocalStorageFrom(arrayOfItems);
 }
