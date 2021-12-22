@@ -1,4 +1,5 @@
-@import "__variables" ; 
+@import "__variables" ;
+@import "__mixin"; 
 
 /* fonts */
 *:not(.list__btn, .header) {
@@ -7,6 +8,10 @@
 }
 
 /* style */
+
+*{
+    -webkit-tap-highlight-color: transparent;
+}
 
 html {
     background-color: #F0F0EC;
@@ -20,25 +25,14 @@ html {
     color: white;
     border-radius: $radius;
     padding: 5px;
-    @media (hover:hover){
-        &:hover {
-            box-shadow:0px 0px 5px grey;
-        }
-    }
-    /* add same effect to touch device */
-        &:active {
-        box-shadow:0px 0px 5px grey;
-    }
+    user-select: none;
+     /* add effect when hover or clicked in touch device */
+    @include darkenBtn(#dc3545);
 
-    /* this style can't be compiled from nesting so it's written in "line 95"
-    .list__item {
-        position: relative;
-    }
-    */
 
     &.list__btn {
         border: none;
-        border-radius: 15px;
+        border-radius: $radius;
         height: 25px;
         width: 25px;
         text-align: center;
@@ -51,7 +45,11 @@ html {
         background-color: #BECA5C;
         border: solid darken(#BECA5C, 5%);
         color: black;
+
+        /* add effect when hover or clicked in touch device */
+        @include darkenBtn(#BECA5C);
     }
+
 }
 
 /* input */
@@ -64,7 +62,11 @@ input {
 
     &:focus {
         outline: none;
-        box-shadow:0px 0px 5px hsl(0, 0%, 70%);
+        box-shadow:
+            0.1px 0.1px 1.5px rgba(0, 0, 0, 0.04),
+            0.4px 0.4px 3.3px rgba(0, 0, 0, 0.06),
+            2px 2px 15px rgba(0, 0, 0, 0.1)
+            ;     
     }
 }
 
@@ -79,7 +81,7 @@ input {
 
 .list--delete--animation1 {
     transform: scale(1);
-    transition: transform .3s;
+    transition: transform .2s;
 }
 
 .list--delete--animation2 {

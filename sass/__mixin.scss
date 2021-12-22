@@ -1,0 +1,8 @@
+@mixin darkenBtn($color) {
+
+    /* add same effect to touch device */
+        &:active {
+            background-color: darken($color: $color, $amount: 7%); 
+            border: solid lighten($color, 7%);
+    }
+}

@@ -5,6 +5,10 @@
 }
 
 /* style */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 html {
   background-color: #F0F0EC;
 }
@@ -17,24 +21,17 @@ html {
   color: white;
   border-radius: 15px;
   padding: 5px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  /* add effect when hover or clicked in touch device */
   /* add same effect to touch device */
-  /* this style can't be compiled from nesting so it's written in "line 95"
-    .list__item {
-        position: relative;
-    }
-    */
-}
-
-@media (hover: hover) {
-  .btn:hover {
-    -webkit-box-shadow: 0px 0px 5px black;
-            box-shadow: 0px 0px 5px black;
-  }
 }
 
 .btn:active {
-  -webkit-box-shadow: 0px 0px 5px black;
-          box-shadow: 0px 0px 5px black;
+  background-color: #ca2333;
+  border: solid #e15361;
 }
 
 .btn.list__btn {
@@ -47,16 +44,18 @@ html {
   right: 10px;
 }
 
-.btn.list__btn:hover {
-  -webkit-box-shadow: 0px 0px 5px black;
-          box-shadow: 0px 0px 5px black;
-}
-
 .btn.textfield__button {
   margin-left: 5px;
   background-color: #BECA5C;
   border: solid #b6c449;
   color: black;
+  /* add effect when hover or clicked in touch device */
+  /* add same effect to touch device */
+}
+
+.btn.textfield__button:active {
+  background-color: #b3c141;
+  border: solid #c9d377;
 }
 
 /* input */
@@ -73,8 +72,8 @@ input {
 
 input:focus {
   outline: none;
-  -webkit-box-shadow: 0px 0px 7px gray;
-          box-shadow: 0px 0px 7px gray;
+  -webkit-box-shadow: 0.1px 0.1px 1.5px rgba(0, 0, 0, 0.04), 0.4px 0.4px 3.3px rgba(0, 0, 0, 0.06), 2px 2px 15px rgba(0, 0, 0, 0.1);
+          box-shadow: 0.1px 0.1px 1.5px rgba(0, 0, 0, 0.04), 0.4px 0.4px 3.3px rgba(0, 0, 0, 0.06), 2px 2px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* list */
@@ -88,10 +87,10 @@ input:focus {
 .list--delete--animation1 {
   -webkit-transform: scale(1);
           transform: scale(1);
-  -webkit-transition: -webkit-transform .3s;
-  transition: -webkit-transform .3s;
-  transition: transform .3s;
-  transition: transform .3s, -webkit-transform .3s;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
 }
 
 .list--delete--animation2 {
