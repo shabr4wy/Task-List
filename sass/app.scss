@@ -1,0 +1,133 @@
+@import "__variables" ; 
+
+/* fonts */
+*:not(.list__btn, .header) {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+/* style */
+
+html {
+    background-color: #F0F0EC;
+}
+
+/* Button */
+.btn {
+    cursor: pointer;
+    background-color: #dc3545;
+    border: solid darken(#dc3545, 5%);
+    color: white;
+    border-radius: $radius;
+    padding: 5px;
+    @media (hover:hover){
+        &:hover {
+            box-shadow:0px 0px 5px grey;
+        }
+    }
+    /* add same effect to touch device */
+        &:active {
+        box-shadow:0px 0px 5px grey;
+    }
+
+    /* this style can't be compiled from nesting so it's written in "line 95"
+    .list__item {
+        position: relative;
+    }
+    */
+
+    &.list__btn {
+        border: none;
+        border-radius: 15px;
+        height: 25px;
+        width: 25px;
+        text-align: center;
+        position: absolute;
+        right: 10px;
+    }
+
+    &.textfield__button {
+        margin-left: 5px;
+        background-color: #BECA5C;
+        border: solid darken(#BECA5C, 5%);
+        color: black;
+    }
+}
+
+/* input */
+input {
+    border: 1px solid grey;
+    border-radius: $radius;
+    padding: 7px 0 7px 10px;
+    width: 78%;
+    transition: box-shadow .3s ;
+
+    &:focus {
+        outline: none;
+        box-shadow:0px 0px 5px hsl(0, 0%, 70%);
+    }
+}
+
+
+/* list */
+.list {
+    padding: 0px;
+    max-height: 60vh;
+    overflow: scroll;
+    margin: 10px 0px;
+}   
+
+.list--delete--animation1 {
+    transform: scale(1);
+    transition: transform .3s;
+}
+
+.list--delete--animation2 {
+    transform: scale(0);
+}
+
+/* list items */
+.list__item {
+    will-change: auto;
+    position: relative;
+    cursor: pointer;
+    list-style-position: inside;
+    background-color: #BECA5C;
+    border-radius: $radius;
+    margin-top: 5px;
+    padding: 8px 0 8px 10px;
+    transform: scale(1);
+    box-sizing: border-box;
+    height: 41px;
+    width: 78%;
+    transform: scale(1,1);
+    transition: height .3s, padding .3s, margin-top .3s , transform .5s ease-out;
+}
+
+/* box model is animated to apply transition to the list which animates the clear All btn in turn */
+/* added transition to mask any dropped frames */
+/* reduced transition time to mask any dropped frames */ 
+.list__item--animation {
+    height: 0px;
+    padding: 0px;
+    margin-top: 0px;
+    transform: scale(1,0);
+}
+
+.list__item--done {
+    text-decoration: line-through 3px;
+    background-color: #C5C5C5;
+    color: grey;
+}
+
+/* responsive design */
+@media screen and (min-width:600px){
+    .container {
+        margin: 25vh 0 0vh 10vw;
+    }
+    
+    .list {
+        max-height: 30vh;
+        overflow: scroll;
+    }
+}
